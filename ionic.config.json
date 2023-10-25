@@ -1,0 +1,7 @@
+{
+  "name": "DI03_TE01",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
