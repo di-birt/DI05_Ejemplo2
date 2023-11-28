@@ -4,6 +4,16 @@
       Mis Noticias
     </ion-title>
   </ion-toolbar>
+  <!-- 
+    Creamos y configuramos el coponente ion-segment
+    Trabajará con los valores del array categorías
+    Cuando cambie de valor se llamará al método cambiarCategoria y se le pasará el evento
+   -->
+   <ion-segment scrollable [value]="categorias[0]" (ionChange)="cambiarCategoria($event)">
+    <ion-segment-button [value]="categoria" *ngFor="let categoria of categorias">
+      <ion-label>{{categoria}}</ion-label>
+    </ion-segment-button>
+  </ion-segment>
 </ion-header>
 
 <ion-content [fullscreen]="true">
