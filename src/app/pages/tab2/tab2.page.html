@@ -1,0 +1,17 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>
+      Mis noticias
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col *ngFor="let noticia of gestionNoticiasLeer.getNoticias()" size=12 sizeLg=3 sizeMd=4 sizeSm=6 sizeXs=12>
+        <app-noticia [noticia]="noticia"></app-noticia>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,16 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>{{noticia.title}}</ion-card-title>
+    <ion-card-subtitle>{{noticia.source.name}}</ion-card-subtitle>
+  </ion-card-header>
+  <ion-img *ngIf="noticia.urlToImage" [src]="noticia.urlToImage"></ion-img>
+  <ion-card-content>
+    <p>
+      {{noticia.description}}
+    </p>
+  </ion-card-content>
+  <ion-item>
+    <ion-icon slot="end" name="trash-outline" (click)="onClick()"></ion-icon>
+    <ion-label><a [href]="noticia.url" target="_blank">Leer</a></ion-label>
+  </ion-item>
+</ion-card>
