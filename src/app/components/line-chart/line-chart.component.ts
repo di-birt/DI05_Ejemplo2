@@ -37,7 +37,27 @@ export class LineChartComponent implements OnInit {
     // Creamos la gráfica
     this.chart = new Chart("lineChart", {
       type: 'line' as ChartType, // tipo de la gráfica 
-      data: data // datos 
+      data: data, // datos 
+      options: { // opciones de la gráfica
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              boxWidth: 0,
+              font: {
+                size: 16,
+                weight: 'bold'
+              }
+            },
+          }
+        },
+      }
     });
     this.chart.canvas.width = 100;
     this.chart.canvas.height = 100;
