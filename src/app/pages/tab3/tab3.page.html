@@ -19,7 +19,7 @@
 
 <ion-content [fullscreen]="true">
   <!-- Mostrar u ocultar componentes según el segmento seleccionado -->
-  <app-bar-chart *ngIf="tipoDeChartSeleccionado === 'bar-chart'"></app-bar-chart>
+  <app-bar-chart *ngIf="tipoDeChartSeleccionado === 'bar-chart'" [nombresCategorias]="categorias"></app-bar-chart>
   <app-line-chart *ngIf="tipoDeChartSeleccionado === 'line-chart'"></app-line-chart>
   <app-pie-chart *ngIf="tipoDeChartSeleccionado === 'pie-chart'"></app-pie-chart>
 </ion-content>
