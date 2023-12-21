@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2, ElementRef } from '@angular/core';
 // Necesitamos importar Chart desde chart.js
 import { Chart, ChartType } from 'chart.js/auto';
  
@@ -11,9 +11,11 @@ export class LineChartComponent implements OnInit {
  
   // Atributo que almacena los datos del chart
   public chart!: Chart;
+
+  constructor(private el: ElementRef, private renderer: Renderer2) {}
  
   ngOnInit(): void {
-    console.log("Ejecuta line-chart")
+    console.log("Ejecuta line-chart");
     this.inicializarChart();
   }
   ngOnDestroy() {
@@ -34,8 +36,17 @@ export class LineChartComponent implements OnInit {
         tension: 0.1
       }]
     };
+
     // Creamos la gráfica
-    this.chart = new Chart("lineChart", {
+    const canvas = this.renderer.createElement('canvas');
+    this.renderer.setAttribute(canvas, 'id', 'lineChart');
+  
+    // Añadimos el canvas al div con id "chartContainer"
+    const container = this.el.nativeElement.querySelector('#contenedor-linechart');
+    this.renderer.appendChild(container, canvas);
+
+    // Creamos la gráfica
+    this.chart = new Chart(canvas, {
       type: 'line' as ChartType, // tipo de la gráfica 
       data: data, // datos 
       options: { // opciones de la gráfica
