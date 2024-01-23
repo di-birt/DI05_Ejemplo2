@@ -4,7 +4,7 @@ export interface RespuestaNoticias {
     totalResults: number;
     articles: Article[];
   }
-  
+
 export  interface Article {
     source: Source;
     author?: string;
@@ -15,7 +15,7 @@ export  interface Article {
     publishedAt: string;
     content?: string;
   }
-  
+
   interface Source {
     id?: string;
     name: string;

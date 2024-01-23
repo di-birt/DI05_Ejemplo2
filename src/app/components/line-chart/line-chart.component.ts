@@ -41,14 +41,14 @@ export class LineChartComponent implements OnInit {
     const canvas = this.renderer.createElement('canvas');
     this.renderer.setAttribute(canvas, 'id', 'lineChart');
   
-    // Añadimos el canvas al div con id "chartContainer"
+    // Añadimos el canvas al div con id "contenedor-linechart"
     const container = this.el.nativeElement.querySelector('#contenedor-linechart');
     this.renderer.appendChild(container, canvas);
 
     // Creamos la gráfica
     this.chart = new Chart(canvas, {
       type: 'line' as ChartType, // tipo de la gráfica 
-      data: data, // datos 
+      data: data, // datos
       options: { // opciones de la gráfica
         responsive: true,
         maintainAspectRatio: false,

@@ -57,26 +57,22 @@ export class Tab3Page implements OnInit {
   constructor(private router: Router, public gestionServiceApi: GestionApiService) {}
 
   ngOnInit() {
-    // Limpiamos la lista de resultados al iniciar
-    //this.listaResultadosCategoria = [];
-
     this.categorias.forEach(categoria => {
       this.gestionServiceApi.cargarCategoria(categoria);
     });
-
-    // Suscríbete a los cambios en datos$
-    /*this.gestionServiceApi.datos$.subscribe((datos) => {
-      if (datos !== undefined) {
-        this.listaResultadosCategoria.push(datos.totalResults);
-      }
-    });*/
   }
 
+  //Gestionamos el cambio de segmento
   segmentChanged(event: any) {
+    //Añadimos la ruta
     this.router.navigate(['/tabs/graficos', event.detail.value]);
+    //Recogemos el tipo de chart (bar-chart, line-chart o pie-chart), mediante event.detail.value
     this.tipoDeChartSeleccionado = event.detail.value;
-    this.categorias.forEach(categoria => {
-      this.gestionServiceApi.cargarCategoria(categoria);
-    });
+    //En caso de bar-chart, realizamos una llamada al api por cada categoria que tenemos.
+    if (this.tipoDeChartSeleccionado == "bar-chart"){
+      this.categorias.forEach(categoria => {
+        this.gestionServiceApi.cargarCategoria(categoria);
+      });
+    }
   }
 }

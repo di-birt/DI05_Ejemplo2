@@ -9,6 +9,7 @@ const routes: Routes = [
   {
     path: '',
     component: Tab3Page,
+    //Añadimos los path para los componentes
     children:[
       { path: 'bar-chart', component: BarChartComponent },
       { path: 'line-chart', component: LineChartComponent },
