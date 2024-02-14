@@ -1,5 +1,5 @@
 {
-  "name": "DI03_TE02",
+  "name": "DI05_TE01",
   "version": "0.0.1",
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
@@ -30,6 +30,7 @@
     "@ionic/angular": "^7.0.0",
     "chart.js": "^4.4.0",
     "ionicons": "^7.0.0",
+    "jspdf": "^2.5.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"

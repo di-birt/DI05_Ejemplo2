@@ -179,10 +179,10 @@ export class BarChartComponent implements OnInit {
   }
   
 
-  private destroyChart() {
-    // Destruir el gráfico si existe
-    if (this.chart) {
-      this.chart.destroy();
-    }
+  getChartImage(): string {
+    // Obtener la representación de imagen base64 de la gráfica
+    const base64Image = this.chart.toBase64Image();
+    return base64Image;
   }
+
 }

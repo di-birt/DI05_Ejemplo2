@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Visualización de Datos
+    </ion-title>
+  </ion-toolbar>
+  <ion-button (click)="generarPDF()">Generar PDF</ion-button>
+</ion-header>
+
+<ion-content class="dashboard-content">
+  <div #container>
+    <div class="seccion header">
+      <h1>Dashboard</h1>
+    </div>
+
+    <div class="seccion list-container">
+      <h2>List</h2>
+      <ul>
+        <li>Esta será la línea 1 de la lista</li>
+        <li>Esta será la línea 2 de la lista</li>
+        <li>Esta será la línea 3 de la lista</li>
+        <li>Esta será la línea 4 de la lista</li>
+        <li>Esta será la línea 1 de la lista</li>
+        <li>Esta será la línea 2 de la lista</li>
+        <li>Esta será la línea 3 de la lista</li>
+        <li>Esta será la línea 4 de la lista</li>
+        <li>Esta será la línea 1 de la lista</li>
+        <li>Esta será la línea 2 de la lista</li>
+        <li>Esta será la línea 3 de la lista</li>
+        <li>Esta será la línea 4 de la lista</li>
+        <li>Esta será la línea 1 de la lista</li>
+        <li>Esta será la línea 2 de la lista</li>
+        <li>Esta será la línea 3 de la lista</li>
+        <li>Esta será la línea 4 de la lista</li>
+        <li>Esta será la línea 1 de la lista</li>
+        <li>Esta será la línea 2 de la lista</li>
+        <li>Esta será la línea 3 de la lista</li>
+        <li>Esta será la línea 4 de la lista</li>
+        <li>Esta será la línea 1 de la lista</li>
+        <li>Esta será la línea 2 de la lista</li>
+        <li>Esta será la línea 3 de la lista</li>
+        <li>Esta será la línea 4 de la lista</li>
+        <li>Esta será la línea 1 de la lista</li>
+        <li>Esta será la línea 2 de la lista</li>
+        <li>Esta será la línea 3 de la lista</li>
+        <li>Esta será la línea 4 de la lista</li>
+        <li>Esta será la línea 1 de la lista</li>
+        <li>Esta será la línea 2 de la lista</li>
+        <li>Esta será la línea 3 de la lista</li>
+        <li>Esta será la línea 4 de la lista</li>
+        <li>Esta será la línea 1 de la lista</li>
+        <li>Esta será la línea 2 de la lista</li>
+        <li>Esta será la línea 3 de la lista</li>
+        <li>Esta será la línea 4 de la lista</li>
+        <li>Esta será la línea 1 de la lista</li>
+        <li>Esta será la línea 2 de la lista</li>
+        <li>Esta será la línea 3 de la lista</li>
+        <li>Esta será la línea 4 de la lista</li>
+        <li>Esta será la línea 1 de la lista</li>
+        <li>Esta será la línea 2 de la lista</li>
+        <li>Esta será la línea 3 de la lista</li>
+        <li>Esta será la línea 4 de la lista</li>
+      </ul>
+      <!--<app-lista></app-lista>-->
+    </div>
+
+    <div class="seccion table-container">
+      <h2>Table</h2>
+      <app-tablas [datosTabla]="datosTablaTab4"></app-tablas>
+    </div>
+
+    <div class="seccion chart-container">
+      <h2>Chart</h2>
+      <app-bar-chart [nombresCategorias]="categorias" [borderColorCategorias]="borderColorCat" [backgroundColorCategorias]="backgroundColorCat"></app-bar-chart>
+    </div>
+
+    <div class="seccion table-container">
+      <h2>Table</h2>
+      <app-tablas [datosTabla]="datosTablaTab4"></app-tablas>
+    </div>
+
+    <div class="seccion chart-container">
+      <h2>Chart</h2>
+      <app-bar-chart [nombresCategorias]="categorias" [borderColorCategorias]="borderColorCat" [backgroundColorCategorias]="backgroundColorCat"></app-bar-chart>
+    </div>
+  </div>
+
+</ion-content>
