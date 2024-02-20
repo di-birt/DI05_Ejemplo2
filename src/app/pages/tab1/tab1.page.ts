@@ -10,24 +10,6 @@ import jsPDF from 'jspdf';
 })
 export class Tab1Page implements OnInit {
 
-  datosTablaTab1 = [
-    { nombre: 'Juan', apellido: 'garcia', pais: "españa", edad: 30 },
-    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
-    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
-    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
-    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
-    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
-    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
-    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
-    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
-    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
-    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
-    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
-    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
-    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
-    { nombre: 'Pedro', apellido: 'ruiz', pais: "españa", edad: 40 }
-  ];
-
   /* En el html, añadimos el atributo #container al div padre (será una id única), para luego poder gestionar todo lo que hay dentro de este div.
    * @ViewChield('container'), busca el atributo #container
    * Añadimos !, para decirle que el valor no será ni null ni undefined. En caso contrarío tendríamos que comprobar que if(this.container) antes de 
