@@ -7,82 +7,22 @@
   <ion-button (click)="generarPDF()">Generar PDF</ion-button>
 </ion-header>
 
-<ion-content class="dashboard-content">
+<ion-content>
   <div #container>
-    <div class="seccion header">
-      <h1>Dashboard</h1>
-    </div>
+    <div class="dashboard-content">
+      <div class="header">
+        <h1>Dashboard</h1>
+      </div>
 
-    <div class="seccion list-container">
-      <h2>List</h2>
-      <ul>
-        <li>Esta será la línea 1 de la lista</li>
-        <li>Esta será la línea 2 de la lista</li>
-        <li>Esta será la línea 3 de la lista</li>
-        <li>Esta será la línea 4 de la lista</li>
-        <li>Esta será la línea 1 de la lista</li>
-        <li>Esta será la línea 2 de la lista</li>
-        <li>Esta será la línea 3 de la lista</li>
-        <li>Esta será la línea 4 de la lista</li>
-        <li>Esta será la línea 1 de la lista</li>
-        <li>Esta será la línea 2 de la lista</li>
-        <li>Esta será la línea 3 de la lista</li>
-        <li>Esta será la línea 4 de la lista</li>
-        <li>Esta será la línea 1 de la lista</li>
-        <li>Esta será la línea 2 de la lista</li>
-        <li>Esta será la línea 3 de la lista</li>
-        <li>Esta será la línea 4 de la lista</li>
-        <li>Esta será la línea 1 de la lista</li>
-        <li>Esta será la línea 2 de la lista</li>
-        <li>Esta será la línea 3 de la lista</li>
-        <li>Esta será la línea 4 de la lista</li>
-        <li>Esta será la línea 1 de la lista</li>
-        <li>Esta será la línea 2 de la lista</li>
-        <li>Esta será la línea 3 de la lista</li>
-        <li>Esta será la línea 4 de la lista</li>
-        <li>Esta será la línea 1 de la lista</li>
-        <li>Esta será la línea 2 de la lista</li>
-        <li>Esta será la línea 3 de la lista</li>
-        <li>Esta será la línea 4 de la lista</li>
-        <li>Esta será la línea 1 de la lista</li>
-        <li>Esta será la línea 2 de la lista</li>
-        <li>Esta será la línea 3 de la lista</li>
-        <li>Esta será la línea 4 de la lista</li>
-        <li>Esta será la línea 1 de la lista</li>
-        <li>Esta será la línea 2 de la lista</li>
-        <li>Esta será la línea 3 de la lista</li>
-        <li>Esta será la línea 4 de la lista</li>
-        <li>Esta será la línea 1 de la lista</li>
-        <li>Esta será la línea 2 de la lista</li>
-        <li>Esta será la línea 3 de la lista</li>
-        <li>Esta será la línea 4 de la lista</li>
-        <li>Esta será la línea 1 de la lista</li>
-        <li>Esta será la línea 2 de la lista</li>
-        <li>Esta será la línea 3 de la lista</li>
-        <li>Esta será la línea 4 de la lista</li>
-      </ul>
-      <!--<app-lista></app-lista>-->
-    </div>
-
-    <div class="seccion table-container">
-      <h2>Table</h2>
-      <app-tablas [datosTabla]="datosTablaTab1"></app-tablas>
-    </div>
-
-    <div class="seccion chart-container">
-      <h2>Chart</h2>
-      <app-bar-chart [nombresCategorias]="categorias" [borderColorCategorias]="borderColorCat" [backgroundColorCategorias]="backgroundColorCat"></app-bar-chart>
-    </div>
-
-    <div class="seccion table-container">
-      <h2>Table</h2>
-      <app-tablas [datosTabla]="datosTablaTab1"></app-tablas>
-    </div>
-
-    <div class="seccion chart-container">
-      <h2>Chart</h2>
-      <app-bar-chart [nombresCategorias]="categorias" [borderColorCategorias]="borderColorCat" [backgroundColorCategorias]="backgroundColorCat"></app-bar-chart>
+      <div class="list-container">
+        <h2>List</h2>
+        <ul>
+          <li>Esta será la línea 1 de la lista, vamos a poner un texto muy largo para ver qué es lo que hace en estos casos y como podemos corregirlo</li>
+          <li>Esta será la línea 2 de la lista, será más corta que la anterior, pero entrará bastante justo en el ancho A4.</li>
+          <li>Esta será la línea 3 de la lista, este entra bien</li>
+          <li>Esta será la línea 4 de la lista</li>
+        </ul>
+      </div>
     </div>
   </div>
-
 </ion-content>
