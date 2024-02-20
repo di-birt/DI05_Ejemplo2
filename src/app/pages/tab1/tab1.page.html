@@ -1,30 +1,88 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header>
+  <ion-toolbar color="primary">
     <ion-title>
-      Mis Noticias
+      Visualización de Datos
     </ion-title>
   </ion-toolbar>
-  <!-- 
-    Creamos y configuramos el coponente ion-segment
-    Trabajará con los valores del array categorías
-    Cuando cambie de valor se llamará al método cambiarCategoria y se le pasará el evento
-   -->
-   <ion-segment scrollable [value]="categorias[0]" (ionChange)="cambiarCategoria($event)">
-    <ion-segment-button [value]="categoria" *ngFor="let categoria of categorias">
-      <ion-label>{{categoria}}</ion-label>
-    </ion-segment-button>
-  </ion-segment>
+  <ion-button (click)="generarPDF()">Generar PDF</ion-button>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-list *ngFor="let noticia of listaNoticias">
-    <ion-item>
-      <ion-checkbox color="primary" slot="start" [checked]="seleccionado(noticia)" (ionChange)="checkNoticia($event, noticia)"></ion-checkbox>
-      <ion-label color="primary" class="ion-text-wrap">
-        <h3>{{ noticia.source.name}} </h3>
-        <p> {{ noticia.title}} </p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+<ion-content class="dashboard-content">
+  <div #container>
+    <div class="seccion header">
+      <h1>Dashboard</h1>
+    </div>
+
+    <div class="seccion list-container">
+      <h2>List</h2>
+      <ul>
+        <li>Esta será la línea 1 de la lista</li>
+        <li>Esta será la línea 2 de la lista</li>
+        <li>Esta será la línea 3 de la lista</li>
+        <li>Esta será la línea 4 de la lista</li>
+        <li>Esta será la línea 1 de la lista</li>
+        <li>Esta será la línea 2 de la lista</li>
+        <li>Esta será la línea 3 de la lista</li>
+        <li>Esta será la línea 4 de la lista</li>
+        <li>Esta será la línea 1 de la lista</li>
+        <li>Esta será la línea 2 de la lista</li>
+        <li>Esta será la línea 3 de la lista</li>
+        <li>Esta será la línea 4 de la lista</li>
+        <li>Esta será la línea 1 de la lista</li>
+        <li>Esta será la línea 2 de la lista</li>
+        <li>Esta será la línea 3 de la lista</li>
+        <li>Esta será la línea 4 de la lista</li>
+        <li>Esta será la línea 1 de la lista</li>
+        <li>Esta será la línea 2 de la lista</li>
+        <li>Esta será la línea 3 de la lista</li>
+        <li>Esta será la línea 4 de la lista</li>
+        <li>Esta será la línea 1 de la lista</li>
+        <li>Esta será la línea 2 de la lista</li>
+        <li>Esta será la línea 3 de la lista</li>
+        <li>Esta será la línea 4 de la lista</li>
+        <li>Esta será la línea 1 de la lista</li>
+        <li>Esta será la línea 2 de la lista</li>
+        <li>Esta será la línea 3 de la lista</li>
+        <li>Esta será la línea 4 de la lista</li>
+        <li>Esta será la línea 1 de la lista</li>
+        <li>Esta será la línea 2 de la lista</li>
+        <li>Esta será la línea 3 de la lista</li>
+        <li>Esta será la línea 4 de la lista</li>
+        <li>Esta será la línea 1 de la lista</li>
+        <li>Esta será la línea 2 de la lista</li>
+        <li>Esta será la línea 3 de la lista</li>
+        <li>Esta será la línea 4 de la lista</li>
+        <li>Esta será la línea 1 de la lista</li>
+        <li>Esta será la línea 2 de la lista</li>
+        <li>Esta será la línea 3 de la lista</li>
+        <li>Esta será la línea 4 de la lista</li>
+        <li>Esta será la línea 1 de la lista</li>
+        <li>Esta será la línea 2 de la lista</li>
+        <li>Esta será la línea 3 de la lista</li>
+        <li>Esta será la línea 4 de la lista</li>
+      </ul>
+      <!--<app-lista></app-lista>-->
+    </div>
+
+    <div class="seccion table-container">
+      <h2>Table</h2>
+      <app-tablas [datosTabla]="datosTablaTab1"></app-tablas>
+    </div>
+
+    <div class="seccion chart-container">
+      <h2>Chart</h2>
+      <app-bar-chart [nombresCategorias]="categorias" [borderColorCategorias]="borderColorCat" [backgroundColorCategorias]="backgroundColorCat"></app-bar-chart>
+    </div>
+
+    <div class="seccion table-container">
+      <h2>Table</h2>
+      <app-tablas [datosTabla]="datosTablaTab1"></app-tablas>
+    </div>
+
+    <div class="seccion chart-container">
+      <h2>Chart</h2>
+      <app-bar-chart [nombresCategorias]="categorias" [borderColorCategorias]="borderColorCat" [backgroundColorCategorias]="backgroundColorCat"></app-bar-chart>
+    </div>
+  </div>
+
 </ion-content>
-​

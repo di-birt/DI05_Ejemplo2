@@ -1,91 +1,170 @@
-import { GestionNoticiasLeerService } from './../../services/gestion-noticias-leer.service';
-import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { RespuestaNoticias, Article } from './../../interfaces/interfaces';
 import { environment } from 'src/environments/environment';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { GestionApiService } from 'src/app/services/gestion-api.service';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-tab1',
-  templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss']
+  templateUrl: './tab1.page.html',
+  styleUrls: ['./tab1.page.scss'],
 })
-export class Tab1Page {
+export class Tab1Page implements OnInit {
 
-  // Array para la cabecera de las noticias
-  categorias: string[] = ["general", "business", "technology", "science", "sports"];
+  datosTablaTab1 = [
+    { nombre: 'Juan', apellido: 'garcia', pais: "españa", edad: 30 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'Pedro', apellido: 'ruiz', pais: "españa", edad: 40 }
+  ];
+
+   // Array para la cabecera de las noticias
+   categorias: string[] = [
+    "business",
+    "entertainment",
+    "general",
+    "technology",
+    "health",
+    "science",
+    "sports"
+  ];
+  backgroundColorCat: string[] = [
+    'rgba(255, 99, 132, 0.2)',
+    'rgba(255, 159, 64, 0.2)',
+    'rgba(255, 205, 86, 0.2)',
+    'rgba(75, 192, 192, 0.2)',
+    'rgba(54, 162, 235, 0.2)',
+    'rgba(153, 102, 255, 0.2)',
+    'rgba(201, 203, 207, 0.2)'
+  ];
+
+  borderColorCat: string[] =[
+    'rgb(255, 99, 132)',
+    'rgb(255, 159, 64)',
+    'rgb(255, 205, 86)',
+    'rgb(75, 192, 192)',
+    'rgb(54, 162, 235)',
+    'rgb(153, 102, 255)',
+    'rgb(201, 203, 207)'
+  ];
 
   // Atributos para generar la consulta REST
   // Están almacenados en los ficheros de la carpeta enviroments
   apiKey: string = environment.apiKey;
   apiUrl: string = environment.apiUrl;
   //Declaramos y creamos el array de noticias vacío
-  listaNoticias: Article[] = [];
-  /*
-   * Creamos un objeto {} Observable que estará vacío y será del tipo Observable<RespuestaNoticias>. En este caso estamos creando un objeto vacío no será null.
-   *
-   * Otra manera de hacer esto sería utilizar | null = null, de esta manera decimos que el objeto respuestaNoticiasObservable de tipo Observable<RespuestaNoticias>
-   * puede ser null y lo inicializamos null.
-   * 
-   * Crearlo como global puede ser útil si utilizamos el observable en varios métodos.
-  */
-  //respuestaNoticiasObservable: Observable<RespuestaNoticias> = {} as Observable<RespuestaNoticias>;
-  //respuestaNoticiasObservable: Observable<RespuestaNoticias> | null = null;
+  //listaResultadosCategoria: number[] = [];
 
-  //Añadimos HttpClient y el servicio en el constructor
-  constructor(private leerArticulosServicioHttp: HttpClient, public gestionNoticiasLeerService: GestionNoticiasLeerService) {
-    //Incluso podríamos crear la llamada en el constructor si fuese necesario
-    //this.respNoticiasObservable = this.leerArticulosFicheroHttp.get<RespuestaNoticias>("/assets/datos/articulos.json");
-    //this.leerArticulosFichero();
-    this.cargarCategoria(this.categorias[0]);
-  }
+  tipoDeChartSeleccionado: string = "bar-chart";
 
-  // Se realiza la consulta REST de una categoría
-  // Se concatena la URL, la categoría y la apiKey
-  private cargarCategoria(categoria: string) {
-    let respuesta: Observable<RespuestaNoticias> = this.leerArticulosServicioHttp.get<RespuestaNoticias>("https://newsapi.org/v2/top-headlines?category=" + categoria + "&apiKey=" + this.apiKey);
+  /* En el html, añadimos el atributo #container al div padre (será una id única), para luego poder gestionar todo lo que hay dentro de este div.
+   * @ViewChield('container'), busca el atributo #container
+   * Añadimos !, para decirle que el valor no será ni null ni undefined. En caso contrarío tendríamos que comprobar que if(this.container) antes de 
+   * realizar this.container.nativeElement.
+   */
+  @ViewChild('container') container!: ElementRef;
 
-    respuesta.subscribe( resp => {
-      // console.log("Noticias", resp);
-      this.listaNoticias.push(... resp.articles);
-    } );
-  }
+  constructor(public gestionServiceApi: GestionApiService) {}
 
-  // En función de la categoría elegida se realiza la consulta REST correspondiente
-  public cambiarCategoria(eventoRecibido: any) {
-    this.listaNoticias = [];
-    this.cargarCategoria(eventoRecibido.detail.value);
-  }
-
-  // Cuando cambia el check, en función de su valor añade o borra la noticia del array
-  checkNoticia(eventoRecibido: any, item: Article) {
-    let estado: boolean = eventoRecibido.detail.checked;
-    if (estado) {
-      this.gestionNoticiasLeerService.addNoticias(item);
-    } else {
-      this.gestionNoticiasLeerService.borrarNoticia(item);
-    }
-  }
-
-  // Comprueba si la noticia seleccionada (checked) está para leer o no
-  
-  seleccionado(item: Article): boolean {
-    let indice: number = this.gestionNoticiasLeerService.buscarNoticia(item);
-    if (indice != -1) {
-      return true;
-    }
-    return false; 
-  }
-
-  /*
-  private leerArticulosFichero(){
-    //Hacemos uso de la función get de HttpClient para leer el json diciendo que será de tipo RespuestaNoticias y la guardamos
-    let respNoticiasObservable: Observable<RespuestaNoticias> | null = null;
-    respNoticiasObservable = this.leerArticulosFicheroHttp.get<RespuestaNoticias>("/assets/datos/articulos.json");
-    respNoticiasObservable.subscribe( resp => {
-      console.log("Noticias", resp);
-      this.listaNoticias.push(...resp.articles);
+  ngOnInit() {
+    this.categorias.forEach(categoria => {
+      this.gestionServiceApi.cargarCategoria(categoria);
     });
-  }*/
-  
+  }
+
+  generarPDF() {
+    const doc = new jsPDF({
+      orientation: 'portrait', //Orientación normal 
+      unit: 'px', //En este caso como unidades utilizamos mm, pero podríamos poner cm,px,em,pt,...
+      //mm -> [210, 297]
+      format: [794,1123]
+    });
+
+    /* querySelectorAll: Cogemos todos los selectores que tengan class="seccion" y creamos un NodeListOf de HTMLElement.
+     * NodeListOf, es un array que contendrá nodos de DOM, en este caso, es un array de HTMLElement.
+     */
+    const sections = this.container.nativeElement.querySelectorAll('.seccion') as NodeListOf<HTMLElement>;
+    // El total de secciones que tenemos en nuestro html
+    const totalSections = sections.length;
+        
+    //Gestionará la sección que estamos analizando
+    let currentSectionIndex = 0;
+    //Controlará que se hayan creado todas las imagenes antes de crear el PDF. En caso contrario imprimiría un pdf por cada sección.
+    let contSections = 0;
+
+    //Gestionará el height de la página actual
+    let headerHeight = 55; //Altura del padding que le hemos dado al header
+    let footerHeight = 10; //Altura del padding que le hemos dado al footer
+    let currentPageHeight = headerHeight+footerHeight;
+
+    /* Realizamos un bucle para todas las secciones.
+     * Importante: html2canvas es asíncrono, por tanto, tendremos que realizar el bucle entero y luego html2canvas se encargará de la creación del pdf.
+     * En otras palabras, el bucle terminará antes de que html2canvas haya podido terminar de crear los pdf, es decir, realizará tantas peticiones como secciones haya.
+     * Cuando html2canvas termine de gestionar todas las peticiones, creará el pdf y lo imprimirá.
+     */
+    while (currentSectionIndex < totalSections) {
+      const section = sections[currentSectionIndex];
+      html2canvas(section).then(canvas => {
+        const imageData = canvas.toDataURL('image/jpg');
+        const width = doc.internal.pageSize.getWidth();
+        /*Se calcula el height dependiendo del height del canvas y su relación con el width. 
+         *Esto se hace para que la imagen mantenga dimensiones proporcionales según el width de la página.
+         */
+        const height = canvas.height * (width / canvas.width);
+        if (currentPageHeight + height >= doc.internal.pageSize.getHeight()) {
+          doc.addPage();
+          currentPageHeight = headerHeight+footerHeight;
+          //currentPageHeight = headerHeight + footerHeight;
+          //this.addPageConfig(doc);
+        }
+        //this.addPageConfig(doc);
+        doc.addImage(imageData, 'JPG', 0, currentPageHeight, width, height);
+        currentPageHeight += height;
+        contSections++;
+        if (contSections === totalSections) {
+          //Al final asignamos el header y footer a todas las páginas
+          this.addPageConfig(doc);
+          doc.save('dashboard.pdf');
+        }
+      });
+      //Sumamos 1, para que el bucle realice todas las peticiones, una por cada sección
+      currentSectionIndex++;
+    }
+  }
+
+  addPageConfig(doc:jsPDF) {
+    for (let i = 1; i <= doc.getNumberOfPages(); i++) {
+      // Añadimos la págin
+      doc.setPage(i);
+      // Añadimos el logotipo, sus valores y posición
+      const imagen = "/assets/icon/favicon.png";
+      const imgWidth = 45; // Ancho de la imagen
+      const imgHeight = 45; // Alto de la imagen
+      const imgX = 5; // Posición X de la imagen
+      const imgY = 5; // Posición Y de la imagen
+      doc.addImage(imagen, "JPG", imgX, imgY, imgWidth, imgHeight);
+      // Le asignamos un tamaño a las letras
+      doc.setFontSize(10);
+      doc.line(0, 55, doc.internal.pageSize.width, 55);
+      // Añadimos información de la empresa
+      const nombreEmpresa = "Nombre de la Empresa";
+      const telefono = "Teléfono: 123-456-789";
+      const direccion = "Dirección: Calle Principal, 123";
+      const texto = nombreEmpresa+'\n'+telefono+'\n'+direccion;
+      doc.text(texto, doc.internal.pageSize.width - 120, 10, {baseline:'top'});
+      // Añadimos la paginación
+      doc.text("Página "+i, doc.internal.pageSize.width - 100, doc.internal.pageSize.height - 10, {baseline:'bottom'});
+    }
+  }
 }
