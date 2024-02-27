@@ -9,7 +9,7 @@ import html2canvas from 'html2canvas';
 export class TablasComponent  implements OnInit {
 
   @Input() datosTabla: any[] = [];
-  constructor() { }
+      constructor() { }
 
   ngOnInit() {}
 
